@@ -2,7 +2,7 @@
 	ServerName <%= vars['SERVER_NAME'] %>
 	DocumentRoot <%= vars['WEB_ROOT'] %>
 	<% if vars['USE_SSL'] %>
-	Redirect / https://<%= vars['SERVER_NAME'] %>/
+	Redirect / https://<%= vars['BOX_IP'] %>/
 	<% end %>
 
 	#LogLevel info ssl:warn

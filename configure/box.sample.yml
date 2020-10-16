@@ -3,15 +3,25 @@
 # Configure the vagrant box to your needs.
 #
 ########################################################################################################################
-BOX_BASE: "ubuntu/bionic64" # Ubuntu 18.04 LTS
+
+# Ubuntu 18.04 LTS
+BOX_BASE: "ubuntu/bionic64"
 BOX_VERSION: "20201007.0.0"
+
+# Ubuntu 20.04 LTS
+# BOX_BASE: "ubuntu/focal64"
+# BOX_VERSION: "20201007.0.0"
+
 BOX_NAME: "vbox-dev"
 BOX_IP: "10.0.0.101"
 BOX_CPU: 1
 BOX_MEMORY: 2048
 BOX_CHECK_UPDATES: false
+
+# Install additional vagrant plugins
+# vagrant-vbguest is installed by default
 PLUGINS:
-  #- vagrant-vbguest
+  # - vagrant-reload
 
 WEB_ROOT: /var/www/html
 SERVER_NAME: dev.box
