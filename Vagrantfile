@@ -45,6 +45,7 @@ File.write("provisioning/templates/apache/000-default.conf", apacheConf.result(b
 Vagrant.configure("2") do |config|
 
   config.vagrant.plugins = configure["PLUGINS"] || []
+  config.vagrant.plugins.push("vagrant-vbguest")
 
   config.vm.box = configure["BOX_BASE"]
 
