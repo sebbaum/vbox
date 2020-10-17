@@ -1,18 +1,18 @@
 <VirtualHost *:80>
-	ServerName <%= vars['SERVER_NAME'] %>
-	DocumentRoot <%= vars['WEB_ROOT'] %>
-	<% if vars['USE_SSL'] %>
-	Redirect / https://<%= vars['BOX_IP'] %>/
+	ServerName <%= vars['server_name'] %>
+	DocumentRoot <%= vars['web_root'] %>
+	<% if vars['use_ssl'] %>
+	Redirect / https://<%= vars['box_ip'] %>/
 	<% end %>
 
 	#LogLevel info ssl:warn
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
-<% if vars['USE_SSL'] %>
+<% if vars['use_ssl'] %>
 <VirtualHost _default_:443>
-	ServerName <%= vars['SERVER_NAME'] %>
-	DocumentRoot <%= vars['WEB_ROOT'] %>
+	ServerName <%= vars['server_name'] %>
+	DocumentRoot <%= vars['web_root'] %>
 
 	SSLEngine on
 	SSLCertificateKeyFile /var/certificates/vbox.key

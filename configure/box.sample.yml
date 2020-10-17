@@ -5,24 +5,24 @@
 ########################################################################################################################
 
 # Ubuntu 20.04 LTS
-BOX_BASE: "ubuntu/focal64"
-BOX_VERSION: "20201007.0.0"
+box_base: "ubuntu/focal64"
+box_version: "20201007.0.0"
 
-BOX_NAME: "vbox-dev"
-BOX_IP: "10.0.0.101"
-BOX_CPU: 1
-BOX_MEMORY: 2048
-BOX_CHECK_UPDATES: false
+box_name: "vbox-dev"
+box_ip: "10.0.0.101"
+box_cpu: 1
+box_memory: 2048
+box_check_updates: false
 
 # Install additional vagrant plugins
 # vagrant-vbguest is installed by default
-PLUGINS:
+plugins:
   # - vagrant-reload
 
-WEB_ROOT: /var/www/html
-SERVER_NAME: dev.box
-USE_SSL: false
-OPEN_BROWSER: true
+web_root: /var/www/html
+server_name: dev.box
+use_ssl: false
+open_browser: true
 
 ########################################################################################################################
 #

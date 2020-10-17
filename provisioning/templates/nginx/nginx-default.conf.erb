@@ -3,12 +3,12 @@
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        root <%= vars['WEB_ROOT'] %>;
+        root <%= vars['web_root'] %>;
         index index.php index.html;
 
-        server_name <%= vars['SERVER_NAME'] %> <%= vars['BOX_IP'] %>;
+        server_name <%= vars['server_name'] %> <%= vars['box_ip'] %>;
 
-        <% if vars['USE_SSL'] %>
+        <% if vars['use_ssl'] %>
         return 301 https://$host$request_uri;
         <% else %>
         location / {
@@ -26,14 +26,14 @@ server {
         <% end %>
 }
 
-<% if vars['USE_SSL'] %>
+<% if vars['use_ssl'] %>
 server {
         listen 443 ssl;
         listen [::]:443;
-        root <%= vars['WEB_ROOT'] %>;
+        root <%= vars['web_root'] %>;
         index index.php index.html;
 
-        server_name <%= vars['SERVER_NAME'] %> <%= vars['BOX_IP'] %>;
+        server_name <%= vars['server_name'] %> <%= vars['box_ip'] %>;
         ssl_certificate     /var/certificates/vbox.cert;
         ssl_certificate_key /var/certificates/vbox.key;
         ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;

@@ -44,22 +44,22 @@ File.write("provisioning/templates/apache/000-default.conf", apacheConf.result(b
 ########################################################################################################################
 Vagrant.configure("2") do |config|
 
-  config.vagrant.plugins = configure["PLUGINS"] || []
+  config.vagrant.plugins = configure["plugins"] || []
   config.vagrant.plugins.push("vagrant-vbguest")
 
-  config.vm.box = configure["BOX_BASE"]
+  config.vm.box = configure["box_base"]
 
   # Fix the version and disable check of updates
-  config.vm.box_version = configure["BOX_VERSION"]
-  config.vm.box_check_update = configure["BOX_CHECK_UPDATES"] || false
+  config.vm.box_version = configure["box_version"]
+  config.vm.box_check_update = configure["box_check_updates"] || false
 
   # Give your box a name, that is displayed in the commandline and in
   # the VirtualBox"s bash.
-  config.vm.define configure["BOX_NAME"] do |vm| end
-  config.vm.host_name = configure["BOX_NAME"]
+  config.vm.define configure["box_name"] do |vm| end
+  config.vm.host_name = configure["box_name"]
 
   # Assign private IP address for the box
-  config.vm.network "private_network", ip: configure["BOX_IP"]
+  config.vm.network "private_network", ip: configure["box_ip"]
 
   # Port forwarding
   if !configure["ports"].nil?
@@ -83,11 +83,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     # Give your box a name, that is displayed in the VirtualBox Manager
-    vb.name = configure["BOX_NAME"]
+    vb.name = configure["box_name"]
 
     # Allocate CPU and memory
-    vb.cpus = configure["BOX_CPU"]
-    vb.memory = configure["BOX_MEMORY"]
+    vb.cpus = configure["box_cpu"]
+    vb.memory = configure["box_memory"]
   end
 
   # Add extra ca certificates to the box
@@ -255,16 +255,16 @@ Vagrant.configure("2") do |config|
   end
 
   # Open default browser on host
-  if configure["OPEN_BROWSER"] && (configure["provision"]["nginx"] || configure["provision"]["apache"])
+  if configure["open_browser"] && (configure["provision"]["nginx"] || configure["provision"]["apache"])
     config.trigger.after [:up] do |trigger|
 
       trigger.name = "Up and running"
       trigger.info = "Vbox is up and running. Build something amazing."
       if Vagrant::Util::Platform.linux?
-        trigger.run = {inline: "xdg-open http://#{configure['BOX_IP']}"}
+        trigger.run = {inline: "xdg-open http://#{configure['box_ip']}"}
       end
       if Vagrant::Util::Platform.windows?
-        trigger.run = {inline: "start http://#{configure['BOX_IP']}"}
+        trigger.run = {inline: "start http://#{configure['box_ip']}"}
       end
     end
   end
